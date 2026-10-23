@@ -11,11 +11,11 @@ public class MiniJavaParser implements MiniJavaParserConstants {
       Program root = parser.Goal();
       root.accept(new PrettyPrintVisitor());
     } catch (ParseException e) {
-      System.out.println("Parsing failed: " + e.getMessage());
+      System.out.println(e.toString());
     }
   }
 
-/* ==================== 구문 분석 및 AST 빌드 규칙 ==================== */
+/* ==================== 구문 분석 및 AST 생성 (Parser & AST Actions) ==================== */
   final public 
 Program Goal() throws ParseException {MainClass m;
   ClassDeclList cl = new ClassDeclList();
@@ -786,23 +786,17 @@ el.addElement(e);
     finally { jj_save(5, xla); }
   }
 
-  private boolean jj_3R_IntegerType_203_3_26()
- {
-    if (jj_scan_token(INT)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_Type_179_3_21()
+  private boolean jj_3R_Type_180_3_21()
  {
     Token xsp;
     xsp = jj_scanpos;
     if (jj_3_3()) {
     jj_scanpos = xsp;
-    if (jj_3R_Type_181_5_22()) {
+    if (jj_3R_Type_182_5_22()) {
     jj_scanpos = xsp;
-    if (jj_3R_Type_182_5_23()) {
+    if (jj_3R_Type_183_5_23()) {
     jj_scanpos = xsp;
-    if (jj_3R_Type_183_5_24()) return true;
+    if (jj_3R_Type_184_5_24()) return true;
     }
     }
     }
@@ -811,11 +805,11 @@ el.addElement(e);
 
   private boolean jj_3_1()
  {
-    if (jj_3R_ClassExtendsDeclaration_114_3_16()) return true;
+    if (jj_3R_ClassExtendsDeclaration_115_3_16()) return true;
     return false;
   }
 
-  private boolean jj_3R_BooleanType_197_3_25()
+  private boolean jj_3R_BooleanType_198_3_25()
  {
     if (jj_scan_token(BOOLEAN)) return true;
     return false;
@@ -828,16 +822,16 @@ el.addElement(e);
     return false;
   }
 
-  private boolean jj_3R_VarDeclaration_127_3_17()
+  private boolean jj_3R_VarDeclaration_128_3_17()
  {
-    if (jj_3R_Type_179_3_21()) return true;
-    if (jj_3R_Identifier_391_3_20()) return true;
+    if (jj_3R_Type_180_3_21()) return true;
+    if (jj_3R_Identifier_392_3_20()) return true;
     return false;
   }
 
   private boolean jj_3_2()
  {
-    if (jj_3R_VarDeclaration_127_3_17()) return true;
+    if (jj_3R_VarDeclaration_128_3_17()) return true;
     return false;
   }
 
@@ -848,20 +842,20 @@ el.addElement(e);
     return false;
   }
 
-  private boolean jj_3R_AssignmentStatement_238_3_19()
+  private boolean jj_3R_AssignmentStatement_239_3_19()
  {
-    if (jj_3R_Identifier_391_3_20()) return true;
+    if (jj_3R_Identifier_392_3_20()) return true;
     if (jj_scan_token(39)) return true;
     return false;
   }
 
   private boolean jj_3_4()
  {
-    if (jj_3R_AssignmentStatement_238_3_19()) return true;
+    if (jj_3R_AssignmentStatement_239_3_19()) return true;
     return false;
   }
 
-  private boolean jj_3R_ArrayType_191_3_18()
+  private boolean jj_3R_ArrayType_192_3_18()
  {
     if (jj_scan_token(INT)) return true;
     if (jj_scan_token(33)) return true;
@@ -869,47 +863,53 @@ el.addElement(e);
     return false;
   }
 
-  private boolean jj_3R_Type_183_5_24()
+  private boolean jj_3R_Type_184_5_24()
  {
     if (jj_scan_token(IDENTIFIER)) return true;
     return false;
   }
 
-  private boolean jj_3R_Type_182_5_23()
+  private boolean jj_3R_Type_183_5_23()
  {
-    if (jj_3R_IntegerType_203_3_26()) return true;
+    if (jj_3R_IntegerType_204_3_26()) return true;
     return false;
   }
 
-  private boolean jj_3R_Identifier_391_3_20()
+  private boolean jj_3R_Identifier_392_3_20()
  {
     if (jj_scan_token(IDENTIFIER)) return true;
     return false;
   }
 
-  private boolean jj_3R_Type_181_5_22()
+  private boolean jj_3R_Type_182_5_22()
  {
-    if (jj_3R_BooleanType_197_3_25()) return true;
+    if (jj_3R_BooleanType_198_3_25()) return true;
     return false;
   }
 
-  private boolean jj_3R_ClassExtendsDeclaration_114_3_16()
+  private boolean jj_3R_ClassExtendsDeclaration_115_3_16()
  {
     if (jj_scan_token(CLASS)) return true;
-    if (jj_3R_Identifier_391_3_20()) return true;
+    if (jj_3R_Identifier_392_3_20()) return true;
     if (jj_scan_token(EXTENDS)) return true;
     return false;
   }
 
   private boolean jj_3_3()
  {
-    if (jj_3R_ArrayType_191_3_18()) return true;
+    if (jj_3R_ArrayType_192_3_18()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_IntegerType_204_3_26()
+ {
+    if (jj_scan_token(INT)) return true;
     return false;
   }
 
   /** Generated Token Manager. */
   public MiniJavaParserTokenManager token_source;
-  SimpleCharStream jj_input_stream;
+  JavaCharStream jj_input_stream;
   /** Current token. */
   public Token token;
   /** Next token. */
@@ -941,7 +941,7 @@ el.addElement(e);
   }
   /** Constructor with InputStream and supplied encoding */
   public MiniJavaParser(java.io.InputStream stream, String encoding) {
-	 try { jj_input_stream = new SimpleCharStream(stream, encoding, 1, 1); } catch(java.io.UnsupportedEncodingException e) { throw new RuntimeException(e); }
+	 try { jj_input_stream = new JavaCharStream(stream, encoding, 1, 1); } catch(java.io.UnsupportedEncodingException e) { throw new RuntimeException(e); }
 	 token_source = new MiniJavaParserTokenManager(jj_input_stream);
 	 token = new Token();
 	 jj_ntk = -1;
@@ -967,7 +967,7 @@ el.addElement(e);
 
   /** Constructor. */
   public MiniJavaParser(java.io.Reader stream) {
-	 jj_input_stream = new SimpleCharStream(stream, 1, 1);
+	 jj_input_stream = new JavaCharStream(stream, 1, 1);
 	 token_source = new MiniJavaParserTokenManager(jj_input_stream);
 	 token = new Token();
 	 jj_ntk = -1;
@@ -979,7 +979,7 @@ el.addElement(e);
   /** Reinitialise. */
   public void ReInit(java.io.Reader stream) {
 	if (jj_input_stream == null) {
-	   jj_input_stream = new SimpleCharStream(stream, 1, 1);
+	   jj_input_stream = new JavaCharStream(stream, 1, 1);
 	} else {
 	   jj_input_stream.ReInit(stream, 1, 1);
 	}
