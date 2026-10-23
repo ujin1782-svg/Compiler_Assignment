@@ -21,6 +21,10 @@ java -cp ../javacc.jar javacc MiniJavaParser.jj
 # 2. 패키지 전체 컴파일 (UTF-8 인코딩)
 javac -encoding UTF-8 *.java syntaxtree/*.java visitor/*.java
 
-# 3. 예제 8개 일괄 파싱·AST 빌드·재출력 검증
-for %f in (..\programs\*.java) do @(echo ===== [%~nxf] ===== & java MiniJavaParser "%f")
+# 3. 파일 인자 방식으로 실행
+java Main < programs/Factorial.java
+java MiniJavaParser programs/Factorial.java
+
+# 4. 8개 예제 일괄 실행 (Windows cmd)
+for %f in (programs\*.java) do @(echo ===== [%~nxf] ===== & java Main < "%f")
 ```
