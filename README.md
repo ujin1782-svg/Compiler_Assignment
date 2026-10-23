@@ -10,7 +10,13 @@
 curl -L -o ..\javacc.jar https://repo1.maven.org/maven2/net/java/dev/javacc/javacc/7.0.13/javacc-7.0.13.jar
 ```
 
-## 2. 빌드 및 예제 일괄 실행
+## 2. 컴파일
+
+```bash
+java -cp ..\javacc.jar javacc MiniJavaParser.jj
+```
+
+## 3. 빌드 및 예제 일괄 실행
 
 Parser 코드를 생성한 후, 전체 자바 파일을 컴파일합니다.
 
